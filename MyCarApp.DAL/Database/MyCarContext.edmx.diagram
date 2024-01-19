@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="857cafeb6df540909bf60a54084fd09f" Name="Diagram1">
+        <EntityTypeShape EntityType="MyCarDBModel.Address" Width="1.5" PointX="9.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.Admin" Width="1.5" PointX="12.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.Bank" Width="1.5" PointX="12" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.CarCategory" Width="1.5" PointX="9.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.CarCategoryMapper" Width="1.5" PointX="17.25" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.CarPurchas" Width="1.5" PointX="16.5" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.CarRent" Width="1.5" PointX="14.25" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.Car" Width="1.5" PointX="12" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.CarVarient" Width="1.5" PointX="14.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.City" Width="1.5" PointX="5.25" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.ContactU" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.Country" Width="1.5" PointX="0.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.Currency" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.Dealer" Width="1.5" PointX="15" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.EMI" Width="1.5" PointX="14.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.FAQ" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.Feedback" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.FeedbackCategory" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.Invoice" Width="1.5" PointX="14.25" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.Offer" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.PaymentMethod" Width="1.5" PointX="14.25" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.Pincode" Width="1.5" PointX="7.5" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.Promo" Width="1.5" PointX="14.25" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.Review" Width="1.5" PointX="19.25" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.State" Width="1.5" PointX="3" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyCarDBModel.User" Width="1.5" PointX="12" PointY="29.5" IsExpanded="true" />
+        <AssociationConnector Association="MyCarDBModel.FK_Addresses_Pincodes" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarPurchases_Addresses" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarRents_Addresses" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarRents_Addresses1" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_Cars_Addresses" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_Dealers_Addresses1" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_Users_Addresses" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_Dealers_Admin" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_EMIs_Banks" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarCategoryMapper_CarCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_Cars_CarCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarCategoryMapper_Cars" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarPurchases_CarVarients" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarPurchases_Currencies" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarPurchases_Dealers" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarPurchases_EMIs" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarPurchases_Invoices" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarPurchases_PaymentMethods" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarPurchases_Promo" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarPurchases_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarRents_CarVarients" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarRents_Currencies" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarRents_Invoices" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarRents_PaymentMethods" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarRents_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_CarVarients_Cars" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_Reviews_Cars" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_Cities_States" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_Pincodes_Cities" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_Currencies_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_States_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_Feedback_FeedbackCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_Promo_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MyCarDBModel.FK_Reviews_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

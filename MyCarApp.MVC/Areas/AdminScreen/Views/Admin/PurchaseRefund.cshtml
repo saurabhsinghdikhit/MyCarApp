@@ -1,0 +1,88 @@
+﻿@model IEnumerable<MyCarApp.BE.BussinessEntities.CarPurchase>
+
+@{
+    ViewBag.Title = "PurchaseRefund";
+}
+
+<h2>Purchase Refund</h2>
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.CarVarientId)
+            </th>
+
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+           
+
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>Approve</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.CarVarientId)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+       
+
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedAt)
+        </td>
+
+        <td>
+            @if (item.Status == true && item.IsDeleted == false)
+            {
+                <span class="badge badge-info">Pending</span>
+            }
+            else if (item.Status == false && item.IsDeleted == true)
+            {
+                <span class="badge badge-info">Approved</span>
+            }
+            else if (item.Status == true && item.IsDeleted == true)
+            {
+                <span class="badge badge-info">Rejected</span>
+            }
+        </td>
+        <td>
+            @if (item.Status == true && item.IsDeleted == false)
+            {
+                <a href="/AdminScreen/admin/ApprovePurchaseRequest?Response=accept&id=@item.CarPurchaseId"><i class="fa fa-check" aria-hidden="true"></i></a>
+                <a href="/AdminScreen/admin/ApprovePurchaseRequest?Response=reject&id=@item.CarPurchaseId"><i class="fa fa-times" aria-hidden="true"></i></a>
+            }
+
+        </td>
+    </tr>
+        }
+
+    </table>
+}
+else
+{
+    <h2>No Data Found</h2>
+}
+

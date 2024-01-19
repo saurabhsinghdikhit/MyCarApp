@@ -1,0 +1,74 @@
+﻿@model MyCarApp.BE.ViewModels.AdminLoginVM
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    <link rel="icon" href="~/MyCarApp.png" type="image/imge_header">
+    <link href="~/Content/Login.css" rel="stylesheet" />
+    <title>Admin Login :: My Car App</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <section class="Form my-4 mx-5">
+                <div class="container">
+                    <div class="row row-no-gutters" >
+                        <div class="col-lg-5" style="")">
+                            <img src="~/Images/rent.gif" style=" border-radius: 30px;" class="img-fluid" alt="" />
+                             </div>
+                        <div class="col-lg-7 px-5 py-5">
+                            <h1 class="font-weight-bold py-10">Login</h1>
+                            <h5 style="font-size : medium">Sign </h5>
+                            <form>
+                                <div>
+
+                                    <div class="form-group" style="width : 80% ; margin : 0px">
+                                        <p style="font-weight: bold ; font-family : 'Microsoft JhengHei' ">Email</p>
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group" style="width : 80% ; margin : 0px">
+                                        <p style="font-weight: bold">Password</p>
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Passowrd, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                                            @Html.ValidationMessageFor(model => model.Passowrd, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-lg-7">
+                                        <input type="submit" class="btn1" value="Login" />
+                                    </div>
+
+                                    <br />
+                                </div>
+                                <div class="form-row">
+                                    <div style="color:red;">@ViewBag.Invalid</div>
+                               </div>
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+    </div>
+    }
+
+
+</body>
+</html>

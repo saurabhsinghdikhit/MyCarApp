@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MyCarApp.BE.BussinessEntities.Car>
+@{
+    ViewBag.Title = "Top10Cars";
+}
+@Styles.Render("~/Content/Top10Cars.css")
+<div>
+    <img src="~/Images/LandingPagebg.jpg" alt="Chania" style="width:100%;filter: blur(2px); height:400px;object-fit:cover">
+</div>
+
+<div class="banner-content">
+    <h1 style=" font-variant:small-caps; font-weight: bold; color: #fff;">It is not just a car <br />It's someone else's Dream!</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <h2 style="text-align: center; font-variant:small-caps; font-weight: bold; padding: 30px">Our Top 10 Cars</h2>
+    </div>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="thumbnail">
+                    <a href="/User/CarDetails?Id=@item.Id">
+                        <img src="~/Uploads/CarsImages/@item.Image" class="img-thumbnail" style="height:250px" ;>
+                        <div class="caption">
+                            <strong>@item.Name</strong>
+                            <p>&#8377; @Math.Round(item.CarVarients.OrderBy(x => x.Price).FirstOrDefault().Price, 2)</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

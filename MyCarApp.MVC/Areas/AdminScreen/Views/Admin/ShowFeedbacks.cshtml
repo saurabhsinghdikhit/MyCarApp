@@ -1,0 +1,22 @@
+﻿@model IEnumerable<MyCarApp.BE.BussinessEntities.Feedback>
+
+@{
+    ViewBag.Title = "Feedbacks";
+    ViewBag.Feedback = "background:#2196f3;border-radius:50px";
+}
+
+<h2>Feedbacks</h2>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3" >
+            <div class="card1" style="border: 3px solid #fff; box-shadow: 7px 10px 20px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%); border-radius: 15px;padding-left: 15px; ">
+                <div class="card-body1">
+                    <h5 class="card-title"><b>By </b>@item.Name</h5>
+                    <p class="card-text"><b>Description </b>@item.Description</p>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+    

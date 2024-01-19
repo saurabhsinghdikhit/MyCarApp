@@ -1,0 +1,93 @@
+﻿@model MyCarApp.BE.BussinessEntities.User
+
+@{
+    ViewBag.Title = "User Profile";
+}
+@if (ViewBag.Message != null)
+    {
+<div id="nofication" style="background: green; z-index: 10000;padding-top: 14px; padding-bottom: 15px;" class="notification">
+    @ViewBag.Message
+</div>
+    }
+<div class="breadcrumb-option">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="/User/index"><i class="fa fa-home" style="padding-right: 5px;"></i>Home</a>
+                    <a href="#">User Profile</a>
+                    <span>@User.Identity.Name</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="chart-card">
+            <div class="chart-text">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <img src="~/Uploads/UsersImages/@Model.Image" class="img-thumbnail" style="height:200px" />
+
+        </div>
+
+    </div>
+    <div class="col-md-8">
+        <div class="user-card">
+            <p><b>Email: </b>@Html.DisplayFor(model => model.Email)</p>
+            <p><b>Name: </b>@Html.DisplayFor(model => model.Name)</p>
+            <p><b>Phone: </b>@Html.DisplayFor(model => model.ContactNo)</p>
+            <button type="button" class="btn btn-info" style="width:200px" data-toggle="modal" data-target="#profileModal">Edit your profile</button>
+            <br /><button type="button" class="btn btn-danger" style="width:200px" data-toggle="modal" data-target="#passwordModal">Change your password</button>
+        </div>
+    </div>
+    <div class="modal fade" id="profileModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Enter your details</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/User/UpdateProfile" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input type="file" name="userImage" required class="form-control" placeholder="User Image" />
+                            <br /><input type="text" name="Name" required class="form-control" placeholder="Name" />
+                            <br /><input type="number" name="mobile" required class="form-control" placeholder="input your mobile" />
+                            <br /><input type="submit" class="btn btn-success form-control" value="update" />
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="passwordModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Change your password</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="/User/ChangePassowrd" method="post">
+                        <div class="form-group">
+                            <input type="hidden" name="email" class="form-control" value="@Model.Email" />
+                            <input type="password" name="pass" required class="form-control" placeholder="password" />
+                            <br /><input type="submit" class="btn btn-success form-control" value="update password" />
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

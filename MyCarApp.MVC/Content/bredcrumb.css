@@ -1,0 +1,19 @@
+﻿.breadcrumb-option{
+    margin-bottom:30px;
+}
+.breadcrumb__links a {
+    margin-top: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #111111;
+    margin-right: 18px;
+    display: inline-block;
+    position: relative;
+}
+    .breadcrumb__links a:after {
+        position: absolute;
+        right: -14px;
+        top: 0;
+        content: "\f105";
+        font-family: "FontAwesome";
+    }

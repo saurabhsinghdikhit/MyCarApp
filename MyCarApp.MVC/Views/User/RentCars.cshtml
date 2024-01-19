@@ -1,0 +1,34 @@
+@{
+    ViewBag.Title = "RentCars";
+    
+}
+<div class="breadcrumb-option">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="/User/index"><i class="fa fa-home" style="padding-right: 5px;"></i>Home</a>
+                    
+                    <span>Rent Cars</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="rent-page">
+    <img src="~/Images/purchase.gif" width="100%" height="500px" style="object-fit: cover;filter: brightness(0.5);" />
+    <div class="rent-car text-center">
+        <h1>DRIVE IN A SANITISED CAR</h1>
+        <h3>Please Select your desired city</h3>
+        <form action="/User/SearchRentCars" method="post">
+            <div class="rent-city-dropdown">
+                <select name="rentCarCity" style="height: 40px; width: 400px;" class="form-control">
+                    <option>Ahmedabad</option>
+                    <option>Vadodara</option>
+                    <option>Gandhinagar</option>
+                </select>
+            </div><br />
+            <input type="submit" class="btn btn-success" value="Search vehicles" />
+        </form>
+    </div>
+</div>

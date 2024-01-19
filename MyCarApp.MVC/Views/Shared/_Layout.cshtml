@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/MyCarApp.png" type="image/imge_header">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> 
+    <title>@ViewBag.Title :: My Car App</title>
+    @Styles.Render("~/Content/userCss")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+   
+    <div id="navig" class="navbar navbar-dark navbar-fixed-top">
+        <div class="container" style="width:100%; height:auto; padding-top:10px;padding-bottom:10px">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/User/Index"><img style="margin: 5px;" src="~/myCarAppBrand.png" width="150px" height="40px" /></a>
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li style="@ViewBag.BuyCar">
+                        <div class="dropdown">
+                            <button class="dropbtn">Buy Car</button>
+                            <div class="dropdown-content">
+                                <a href="/User/NewCars">New Car</a>
+                                <a href="/User/UsedCars">Used Car</a>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li style="@ViewBag.BuyCar">
+                        @Html.ActionLink("Rent Car", "RentCars", "User")
+                    </li>
+                    
+                    <li>
+                        <div class="dropdown">
+                            <button class="dropbtn">Others</button>
+                            <div class="dropdown-content">
+                                <a href="/User/FAQ">FAQ</a>
+                                <a href="/User/Feedback">Feedback</a>
+                                <a href="/User/ContactUs">Contact Us</a>
+                                <a href="/User/AboutUs">About Us</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="@ViewBag.FAQ">@Html.ActionLink("Top 10 cars", "Top10Cars", "User")</li>
+                    <li><a href="/User/Reports">Report</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    @if (Session["token"] == null)
+                    {
+                        <li><a data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-out"></span> Login</a></li>
+                        <li><a href="/User/Register">Register</a></li>
+                    }
+                    else
+                    {
+
+                        <li style="margin-right:20px">
+                            <div class="dropdown">
+                                <button class="dropbtn">@User.Identity.Name</button>
+                                <div class="dropdown-content" style="right:10px">
+                                    <a href="/User/UserProfile">Profile</a>
+                                    <a href="/User/UserPurchaseHistory">Purchase History</a>
+                                    <a href="/User/UserRentHistory">Rent History</a>
+                                    <a href="/User/Logout">Logout</a>
+                                </div>
+                            </div>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="container" style="width:100%">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" style="z-index: 99999" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h3>Please Login</h3>
+                        <img src="~/userImage.png" width="100px" height="100px" />
+                    </div>
+                    <div class="modal-body">
+                        <form id="loginForm" method="post">
+                            <input type="hidden" value="@HttpContext.Current.Request.Url.AbsolutePath" id="url" />
+                            <input type="email" class="form-control" required id="userEmail" placeholder="Email" />
+                            <br /><input type="password" required class="form-control" id="userPassword" placeholder="Password" />
+                                  <a href="/User/ForgotPassword" style="margin-top:20px">Forget Password</a>
+                            <br /><input type="submit" class="form-control btn btn-success" id="login" value="Login" />
+                              <a href="/User/Register" style="margin-top:10px" class="form-control btn btn-info">Register</a>
+                            
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        @RenderBody()
+        <br /><br />
+
+    </div>
+    <!--===== FOOTER =====-->
+    <footer class="footer" style="width:100%">
+        <p class="footer__title">My Car App</p>
+
+        <p>&#169; 2021 copyright all right reserved</p>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    <script src="~/Scripts/LayoutPage.js"></script>
+    @RenderSection("scripts", required: false)
+    
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+﻿@model MyCarApp.BE.ViewModels.UserLoginVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login :: My Car App</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/AuthPageStyle.css" rel="stylesheet" />
+    <link rel="icon" href="~/MyCarApp.png" type="image/imge_header">
+    @{ Html.EnableClientValidation(); }
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (ViewBag.Message != null)
+    {
+        <div id="nofication" style="background:blue" class="notification">
+            @ViewBag.Message
+        </div>
+    }
+    @using (Html.BeginForm())
+    {
+        <div class="main">
+
+            <!-- Sing in  Form -->
+            <section class="sign-in">
+                <div class="container">
+                    <div class="signin-content">
+                        <div class="signin-image">
+                            <figure><img src="~/images/rent.gif" alt="sing in image" style="border-radius:10px"></figure>
+                            @Html.ActionLink("Create an Account", "Register", "User")
+                            <div style="color:red;">@Html.ValidationSummary()</div>
+                        </div>
+
+                        <div class="signin-form">
+                            <h2 class="form-title">Sign in</h2>
+                            <form method="POST" class="register-form" id="login-form">
+                                <div class="form-group">
+                                    <label for="your_email"><i class="fa fa-envelope material-icons-name"></i></label>
+                                    @Html.TextBoxFor(a => a.Email, new { @PlaceHolder = "Email" })
+                                    @Html.ValidationMessageFor(a => a.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="your_email"><i class="fa fa-unlock-alt material-icons-name"></i></label>
+                                    @Html.TextBoxFor(a => a.Password, new { @PlaceHolder = "Password", type = "Password" })
+                                    @Html.ValidationMessageFor(a => a.Password, "", new { @class = "text-danger" })
+
+                                </div>
+                                @Html.ActionLink("Forgot Password?", "ForgotPassword", "User")
+                                <div class="form-group form-button">
+                                    <input type="submit" id="signin" class="form-submit" value="Log in" />
+                                    <div style="color:red;">@ViewBag.Invalid</div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    }
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        setTimeout(function () {
+            $('#nofication').fadeOut('fast');
+        }, 4000);
+    </script>
+</body>
+</html>

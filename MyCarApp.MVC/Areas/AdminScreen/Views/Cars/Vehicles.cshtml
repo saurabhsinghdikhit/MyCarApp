@@ -1,0 +1,62 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<MyCarApp.BE.BussinessEntities.Car>
+
+@{
+    ViewBag.Title = "Vehicles";
+    ViewBag.Vehicle = "background:#2196f3;border-radius:50px";
+}
+@if (ViewBag.Message != null)
+{
+    <div id="nofication" style="background:@ViewBag.Color" class="notification">
+        @ViewBag.Message
+    </div>
+}
+<br />
+<br />
+<p>
+
+    @Html.ActionLink("Add New Vehicle", "AddCar", null, htmlAttributes: new { @class = "btn btn-success" })
+</p>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3">
+            <div class="card">
+                <a href="/AdminScreen/Cars/Car?Id=@item.Id">
+                    <div class="imgBox">
+                        <img src="~/Uploads/CarsImages/@item.Image" />
+                    </div>
+                </a>
+                <div class="contentBox">
+                    <h3> @Html.DisplayFor(modelItem => item.Name)</h3>
+                    <h2 class="price">Brand: @item.Brand</h2>
+                    <div style="margin-top:15px">
+
+                        <a class="buy" , href="/AdminScreen/Cars/EditCar?Id=@item.Id">
+                            Edit
+                        </a>
+                        <a onclick="if (!confirm('Are you sure want to delete it?')) { return false; } else { $('#form').submit();}" class="buy" , style="background:red" href="/AdminScreen/Cars/DeleteCar?Id=@item.Id">
+                            Delete
+                        </a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="filter-layout" style="flex-direction:column">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("AllCars",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+@section scripts{
+    <script>
+        setTimeout(function () {
+            $('#nofication').fadeOut('fast');
+        }, 4000);
+    </script>
+}

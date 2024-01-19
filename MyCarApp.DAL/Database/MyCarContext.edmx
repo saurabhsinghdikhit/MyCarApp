@@ -1,0 +1,2279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MyCarDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LocalAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PincodeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="ModifiedAt" Type="datetime" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Passowrd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contact" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Banks">
+          <Key>
+            <PropertyRef Name="BankId" />
+          </Key>
+          <Property Name="BankId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarCategories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="ModifyAt" Type="datetime" Nullable="false" />
+          <Property Name="CreaatedBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarCategoryMapper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CarId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CarCategoryId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarPurchases">
+          <Key>
+            <PropertyRef Name="CarPurchaseId" />
+          </Key>
+          <Property Name="CarPurchaseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DealerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CarVarientId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InvoiceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PaymentMethodId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PromoId" Type="uniqueidentifier" />
+          <Property Name="EmiId" Type="uniqueidentifier" />
+          <Property Name="IsFullPayment" Type="bit" Nullable="false" />
+          <Property Name="CurrencyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="12" Scale="3" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="AddressId" Type="uniqueidentifier" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="ModifiedAt" Type="datetime" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarRents">
+          <Key>
+            <PropertyRef Name="CarRentId" />
+          </Key>
+          <Property Name="CarRentId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CarVarientId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CurrencyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BookingDate" Type="datetime" Nullable="false" />
+          <Property Name="PickupPoint" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ReturningDate" Type="datetime" Nullable="false" />
+          <Property Name="DropPoint" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IsPaymentDone" Type="bit" Nullable="false" />
+          <Property Name="PaymentMethodId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InvoiceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="ModifiedAt" Type="datetime" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cars">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LongDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="ModifyAt" Type="datetime" />
+          <Property Name="CreaatedBy" Type="uniqueidentifier" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CarCategoryId" Type="uniqueidentifier" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="4000" />
+          <Property Name="AddressId" Type="uniqueidentifier" />
+          <Property Name="Kilometers" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="CarVarients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="carId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedAt" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StateId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactUs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="320" Nullable="false" />
+          <Property Name="Query" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Currencies">
+          <Key>
+            <PropertyRef Name="CurrencyId" />
+          </Key>
+          <Property Name="CurrencyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="CountryId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Dealers">
+          <Key>
+            <PropertyRef Name="DealerId" />
+          </Key>
+          <Property Name="DealerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="AddressId" Type="uniqueidentifier" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="IsVerified" Type="bit" Nullable="false" />
+          <Property Name="VerifiedBy" Type="uniqueidentifier" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="ModifiedAt" Type="datetime" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EMIs">
+          <Key>
+            <PropertyRef Name="EmiId" />
+          </Key>
+          <Property Name="EmiId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BankId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CardType" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Period" Type="int" Nullable="false" />
+          <Property Name="Interest" Type="decimal" Precision="7" Scale="4" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedAt" Type="datetime" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="Isdeleted" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FAQs">
+          <Key>
+            <PropertyRef Name="FaqId" />
+          </Key>
+          <Property Name="FaqId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Answer" Type="nvarchar" MaxLength="500" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedAt" Type="datetime" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="FeedbackId" />
+          </Key>
+          <Property Name="FeedbackId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CategoryId" Type="uniqueidentifier" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FeedbackCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TranscationId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Frequency" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="ModifiedAt" Type="datetime" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Offers">
+          <Key>
+            <PropertyRef Name="OfferId" />
+          </Key>
+          <Property Name="OfferId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Details" Type="nvarchar" MaxLength="20" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedAt" Type="datetime" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethods">
+          <Key>
+            <PropertyRef Name="PaymentMethodId" />
+          </Key>
+          <Property Name="PaymentMethodId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pincodes">
+          <Key>
+            <PropertyRef Name="PincodeId" />
+          </Key>
+          <Property Name="PincodeId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CityId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Pincode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Promo">
+          <Key>
+            <PropertyRef Name="PromoId" />
+          </Key>
+          <Property Name="PromoId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="PromoCode" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Details" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedAt" Type="datetime" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="Isdeleted" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reviews">
+          <Key>
+            <PropertyRef Name="ReviewId" />
+          </Key>
+          <Property Name="ReviewId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CarId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="Discription" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="ModifiedAt" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CountryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="320" Nullable="false" />
+          <Property Name="HashPassword" Type="binary" MaxLength="32" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="AddressId" Type="uniqueidentifier" />
+          <Property Name="IdProof" Type="varchar" MaxLength="4000" />
+          <Property Name="Points" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="ModifiedAt" Type="datetime" />
+          <Property Name="ModifiedBy" Type="uniqueidentifier" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Image" Type="varchar" MaxLength="4000" />
+          <Property Name="PasswordSalt" Type="binary" MaxLength="32" />
+        </EntityType>
+        <Association Name="FK_Addresses_Pincodes">
+          <End Role="Pincodes" Type="Self.Pincodes" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pincodes">
+              <PropertyRef Name="PincodeId" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="PincodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarCategoryMapper_CarCategories">
+          <End Role="CarCategories" Type="Self.CarCategories" Multiplicity="1" />
+          <End Role="CarCategoryMapper" Type="Self.CarCategoryMapper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarCategoryMapper">
+              <PropertyRef Name="CarCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarCategoryMapper_Cars">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="1" />
+          <End Role="CarCategoryMapper" Type="Self.CarCategoryMapper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarCategoryMapper">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_Addresses">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="0..1" />
+          <End Role="CarPurchases" Type="Self.CarPurchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_CarVarients">
+          <End Role="CarVarients" Type="Self.CarVarients" Multiplicity="1" />
+          <End Role="CarPurchases" Type="Self.CarPurchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarVarients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="CarVarientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_Currencies">
+          <End Role="Currencies" Type="Self.Currencies" Multiplicity="1" />
+          <End Role="CarPurchases" Type="Self.CarPurchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="CurrencyId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_Dealers">
+          <End Role="Dealers" Type="Self.Dealers" Multiplicity="1" />
+          <End Role="CarPurchases" Type="Self.CarPurchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dealers">
+              <PropertyRef Name="DealerId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="DealerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_EMIs">
+          <End Role="EMIs" Type="Self.EMIs" Multiplicity="0..1" />
+          <End Role="CarPurchases" Type="Self.CarPurchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMIs">
+              <PropertyRef Name="EmiId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="EmiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_Invoices">
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="1" />
+          <End Role="CarPurchases" Type="Self.CarPurchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_PaymentMethods">
+          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="1" />
+          <End Role="CarPurchases" Type="Self.CarPurchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethods">
+              <PropertyRef Name="PaymentMethodId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="PaymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_Promo">
+          <End Role="Promo" Type="Self.Promo" Multiplicity="0..1" />
+          <End Role="CarPurchases" Type="Self.CarPurchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promo">
+              <PropertyRef Name="PromoId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="PromoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="CarPurchases" Type="Self.CarPurchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarRents_Addresses">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="1" />
+          <End Role="CarRents" Type="Self.CarRents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="CarRents">
+              <PropertyRef Name="PickupPoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarRents_Addresses1">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="1" />
+          <End Role="CarRents" Type="Self.CarRents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="CarRents">
+              <PropertyRef Name="DropPoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarRents_CarVarients">
+          <End Role="CarVarients" Type="Self.CarVarients" Multiplicity="1" />
+          <End Role="CarRents" Type="Self.CarRents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarVarients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarRents">
+              <PropertyRef Name="CarVarientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarRents_Currencies">
+          <End Role="Currencies" Type="Self.Currencies" Multiplicity="1" />
+          <End Role="CarRents" Type="Self.CarRents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="CurrencyId" />
+            </Principal>
+            <Dependent Role="CarRents">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarRents_Invoices">
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="1" />
+          <End Role="CarRents" Type="Self.CarRents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="CarRents">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarRents_PaymentMethods">
+          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="1" />
+          <End Role="CarRents" Type="Self.CarRents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethods">
+              <PropertyRef Name="PaymentMethodId" />
+            </Principal>
+            <Dependent Role="CarRents">
+              <PropertyRef Name="PaymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarRents_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="CarRents" Type="Self.CarRents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CarRents">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Addresses">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="0..1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_CarCategories">
+          <End Role="CarCategories" Type="Self.CarCategories" Multiplicity="0..1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="CarCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarVarients_Cars">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="1" />
+          <End Role="CarVarients" Type="Self.CarVarients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarVarients">
+              <PropertyRef Name="carId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cities_States">
+          <End Role="States" Type="Self.States" Multiplicity="1" />
+          <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="States">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Currencies_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
+          <End Role="Currencies" Type="Self.Currencies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="Currencies">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dealers_Addresses1">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="0..1" />
+          <End Role="Dealers" Type="Self.Dealers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Dealers">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dealers_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="Dealers" Type="Self.Dealers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dealers">
+              <PropertyRef Name="VerifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMIs_Banks">
+          <End Role="Banks" Type="Self.Banks" Multiplicity="1" />
+          <End Role="EMIs" Type="Self.EMIs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Banks">
+              <PropertyRef Name="BankId" />
+            </Principal>
+            <Dependent Role="EMIs">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_FeedbackCategory">
+          <End Role="FeedbackCategory" Type="Self.FeedbackCategory" Multiplicity="0..1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeedbackCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pincodes_Cities">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+          <End Role="Pincodes" Type="Self.Pincodes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Pincodes">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promo_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Promo" Type="Self.Promo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Promo">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Cars">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_States_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="States" Type="Self.States" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="States">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Addresses">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyCarDBModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Banks" EntityType="Self.Banks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarCategories" EntityType="Self.CarCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarCategoryMapper" EntityType="Self.CarCategoryMapper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarPurchases" EntityType="Self.CarPurchases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarRents" EntityType="Self.CarRents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarVarients" EntityType="Self.CarVarients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactUs" EntityType="Self.ContactUs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dealers" EntityType="Self.Dealers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMIs" EntityType="Self.EMIs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FAQs" EntityType="Self.FAQs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FeedbackCategory" EntityType="Self.FeedbackCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offers" EntityType="Self.Offers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pincodes" EntityType="Self.Pincodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promo" EntityType="Self.Promo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Addresses_Pincodes" Association="Self.FK_Addresses_Pincodes">
+            <End Role="Pincodes" EntitySet="Pincodes" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarCategoryMapper_CarCategories" Association="Self.FK_CarCategoryMapper_CarCategories">
+            <End Role="CarCategories" EntitySet="CarCategories" />
+            <End Role="CarCategoryMapper" EntitySet="CarCategoryMapper" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarCategoryMapper_Cars" Association="Self.FK_CarCategoryMapper_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="CarCategoryMapper" EntitySet="CarCategoryMapper" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_Addresses" Association="Self.FK_CarPurchases_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_CarVarients" Association="Self.FK_CarPurchases_CarVarients">
+            <End Role="CarVarients" EntitySet="CarVarients" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_Currencies" Association="Self.FK_CarPurchases_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_Dealers" Association="Self.FK_CarPurchases_Dealers">
+            <End Role="Dealers" EntitySet="Dealers" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_EMIs" Association="Self.FK_CarPurchases_EMIs">
+            <End Role="EMIs" EntitySet="EMIs" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_Invoices" Association="Self.FK_CarPurchases_Invoices">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_PaymentMethods" Association="Self.FK_CarPurchases_PaymentMethods">
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_Promo" Association="Self.FK_CarPurchases_Promo">
+            <End Role="Promo" EntitySet="Promo" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_Users" Association="Self.FK_CarPurchases_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarRents_Addresses" Association="Self.FK_CarRents_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="CarRents" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarRents_Addresses1" Association="Self.FK_CarRents_Addresses1">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="CarRents" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarRents_CarVarients" Association="Self.FK_CarRents_CarVarients">
+            <End Role="CarVarients" EntitySet="CarVarients" />
+            <End Role="CarRents" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarRents_Currencies" Association="Self.FK_CarRents_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="CarRents" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarRents_Invoices" Association="Self.FK_CarRents_Invoices">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="CarRents" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarRents_PaymentMethods" Association="Self.FK_CarRents_PaymentMethods">
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+            <End Role="CarRents" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarRents_Users" Association="Self.FK_CarRents_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CarRents" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Addresses" Association="Self.FK_Cars_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_CarCategories" Association="Self.FK_Cars_CarCategories">
+            <End Role="CarCategories" EntitySet="CarCategories" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarVarients_Cars" Association="Self.FK_CarVarients_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="CarVarients" EntitySet="CarVarients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cities_States" Association="Self.FK_Cities_States">
+            <End Role="States" EntitySet="States" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Currencies_Countries" Association="Self.FK_Currencies_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Currencies" EntitySet="Currencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dealers_Addresses1" Association="Self.FK_Dealers_Addresses1">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Dealers" EntitySet="Dealers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dealers_Admin" Association="Self.FK_Dealers_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="Dealers" EntitySet="Dealers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMIs_Banks" Association="Self.FK_EMIs_Banks">
+            <End Role="Banks" EntitySet="Banks" />
+            <End Role="EMIs" EntitySet="EMIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_FeedbackCategory" Association="Self.FK_Feedback_FeedbackCategory">
+            <End Role="FeedbackCategory" EntitySet="FeedbackCategory" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pincodes_Cities" Association="Self.FK_Pincodes_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Pincodes" EntitySet="Pincodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promo_Users" Association="Self.FK_Promo_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Promo" EntitySet="Promo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Cars" Association="Self.FK_Reviews_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Users" Association="Self.FK_Reviews_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_States_Countries" Association="Self.FK_States_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="States" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Addresses" Association="Self.FK_Users_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyCarDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressId" />
+          </Key>
+          <Property Name="AddressId" Type="Guid" Nullable="false" />
+          <Property Name="LocalAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PincodeId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pincode" Relationship="Self.FK_Addresses_Pincodes" FromRole="Addresses" ToRole="Pincodes" />
+          <NavigationProperty Name="CarPurchases" Relationship="Self.FK_CarPurchases_Addresses" FromRole="Addresses" ToRole="CarPurchases" />
+          <NavigationProperty Name="CarRents" Relationship="Self.FK_CarRents_Addresses" FromRole="Addresses" ToRole="CarRents" />
+          <NavigationProperty Name="CarRents1" Relationship="Self.FK_CarRents_Addresses1" FromRole="Addresses" ToRole="CarRents" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_Addresses" FromRole="Addresses" ToRole="Cars" />
+          <NavigationProperty Name="Dealers" Relationship="Self.FK_Dealers_Addresses1" FromRole="Addresses" ToRole="Dealers" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Addresses" FromRole="Addresses" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Passowrd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contact" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Dealers" Relationship="Self.FK_Dealers_Admin" FromRole="Admin" ToRole="Dealers" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="BankId" />
+          </Key>
+          <Property Name="BankId" Type="Guid" Nullable="false" />
+          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EMIs" Relationship="Self.FK_EMIs_Banks" FromRole="Banks" ToRole="EMIs" />
+        </EntityType>
+        <EntityType Name="CarCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifyAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreaatedBy" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Guid" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CarCategoryMappers" Relationship="Self.FK_CarCategoryMapper_CarCategories" FromRole="CarCategories" ToRole="CarCategoryMapper" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK_Cars_CarCategories" FromRole="CarCategories" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="CarCategoryMapper">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CarId" Type="Guid" Nullable="false" />
+          <Property Name="CarCategoryId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="CarCategory" Relationship="Self.FK_CarCategoryMapper_CarCategories" FromRole="CarCategoryMapper" ToRole="CarCategories" />
+          <NavigationProperty Name="Car" Relationship="Self.FK_CarCategoryMapper_Cars" FromRole="CarCategoryMapper" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="CarPurchas">
+          <Key>
+            <PropertyRef Name="CarPurchaseId" />
+          </Key>
+          <Property Name="CarPurchaseId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="DealerId" Type="Guid" Nullable="false" />
+          <Property Name="CarVarientId" Type="Guid" Nullable="false" />
+          <Property Name="InvoiceId" Type="Guid" Nullable="false" />
+          <Property Name="PaymentMethodId" Type="Guid" Nullable="false" />
+          <Property Name="PromoId" Type="Guid" />
+          <Property Name="EmiId" Type="Guid" />
+          <Property Name="IsFullPayment" Type="Boolean" Nullable="false" />
+          <Property Name="CurrencyId" Type="Guid" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="12" Scale="3" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="AddressId" Type="Guid" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_CarPurchases_Addresses" FromRole="CarPurchases" ToRole="Addresses" />
+          <NavigationProperty Name="CarVarient" Relationship="Self.FK_CarPurchases_CarVarients" FromRole="CarPurchases" ToRole="CarVarients" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK_CarPurchases_Currencies" FromRole="CarPurchases" ToRole="Currencies" />
+          <NavigationProperty Name="Dealer" Relationship="Self.FK_CarPurchases_Dealers" FromRole="CarPurchases" ToRole="Dealers" />
+          <NavigationProperty Name="EMI" Relationship="Self.FK_CarPurchases_EMIs" FromRole="CarPurchases" ToRole="EMIs" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK_CarPurchases_Invoices" FromRole="CarPurchases" ToRole="Invoices" />
+          <NavigationProperty Name="PaymentMethod" Relationship="Self.FK_CarPurchases_PaymentMethods" FromRole="CarPurchases" ToRole="PaymentMethods" />
+          <NavigationProperty Name="Promo" Relationship="Self.FK_CarPurchases_Promo" FromRole="CarPurchases" ToRole="Promo" />
+          <NavigationProperty Name="User" Relationship="Self.FK_CarPurchases_Users" FromRole="CarPurchases" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="CarRent">
+          <Key>
+            <PropertyRef Name="CarRentId" />
+          </Key>
+          <Property Name="CarRentId" Type="Guid" Nullable="false" />
+          <Property Name="CarVarientId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="CurrencyId" Type="Guid" Nullable="false" />
+          <Property Name="BookingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PickupPoint" Type="Guid" Nullable="false" />
+          <Property Name="ReturningDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DropPoint" Type="Guid" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IsPaymentDone" Type="Boolean" Nullable="false" />
+          <Property Name="PaymentMethodId" Type="Guid" Nullable="false" />
+          <Property Name="InvoiceId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_CarRents_Addresses" FromRole="CarRents" ToRole="Addresses" />
+          <NavigationProperty Name="Address1" Relationship="Self.FK_CarRents_Addresses1" FromRole="CarRents" ToRole="Addresses" />
+          <NavigationProperty Name="CarVarient" Relationship="Self.FK_CarRents_CarVarients" FromRole="CarRents" ToRole="CarVarients" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK_CarRents_Currencies" FromRole="CarRents" ToRole="Currencies" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK_CarRents_Invoices" FromRole="CarRents" ToRole="Invoices" />
+          <NavigationProperty Name="PaymentMethod" Relationship="Self.FK_CarRents_PaymentMethods" FromRole="CarRents" ToRole="PaymentMethods" />
+          <NavigationProperty Name="User" Relationship="Self.FK_CarRents_Users" FromRole="CarRents" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShortDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="ModifyAt" Type="DateTime" Precision="3" />
+          <Property Name="CreaatedBy" Type="Guid" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CarCategoryId" Type="Guid" />
+          <Property Name="Brand" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="AddressId" Type="Guid" />
+          <Property Name="Kilometers" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_Cars_Addresses" FromRole="Cars" ToRole="Addresses" />
+          <NavigationProperty Name="CarCategory" Relationship="Self.FK_Cars_CarCategories" FromRole="Cars" ToRole="CarCategories" />
+          <NavigationProperty Name="CarCategoryMappers" Relationship="Self.FK_CarCategoryMapper_Cars" FromRole="Cars" ToRole="CarCategoryMapper" />
+          <NavigationProperty Name="CarVarients" Relationship="Self.FK_CarVarients_Cars" FromRole="Cars" ToRole="CarVarients" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Cars" FromRole="Cars" ToRole="Reviews" />
+        </EntityType>
+        <EntityType Name="CarVarient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="carId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CarPurchases" Relationship="Self.FK_CarPurchases_CarVarients" FromRole="CarVarients" ToRole="CarPurchases" />
+          <NavigationProperty Name="CarRents" Relationship="Self.FK_CarRents_CarVarients" FromRole="CarVarients" ToRole="CarRents" />
+          <NavigationProperty Name="Car" Relationship="Self.FK_CarVarients_Cars" FromRole="CarVarients" ToRole="Cars" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Guid" Nullable="false" />
+          <Property Name="StateId" Type="Guid" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="State" Relationship="Self.FK_Cities_States" FromRole="Cities" ToRole="States" />
+          <NavigationProperty Name="Pincodes" Relationship="Self.FK_Pincodes_Cities" FromRole="Cities" ToRole="Pincodes" />
+        </EntityType>
+        <EntityType Name="ContactU">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="320" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Query" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="CountryId" Type="Guid" Nullable="false" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Currencies" Relationship="Self.FK_Currencies_Countries" FromRole="Countries" ToRole="Currencies" />
+          <NavigationProperty Name="States" Relationship="Self.FK_States_Countries" FromRole="Countries" ToRole="States" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="CurrencyId" />
+          </Key>
+          <Property Name="CurrencyId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountryId" Type="Guid" />
+          <NavigationProperty Name="CarPurchases" Relationship="Self.FK_CarPurchases_Currencies" FromRole="Currencies" ToRole="CarPurchases" />
+          <NavigationProperty Name="CarRents" Relationship="Self.FK_CarRents_Currencies" FromRole="Currencies" ToRole="CarRents" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Currencies_Countries" FromRole="Currencies" ToRole="Countries" />
+        </EntityType>
+        <EntityType Name="Dealer">
+          <Key>
+            <PropertyRef Name="DealerId" />
+          </Key>
+          <Property Name="DealerId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressId" Type="Guid" />
+          <Property Name="ContactNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsVerified" Type="Boolean" Nullable="false" />
+          <Property Name="VerifiedBy" Type="Guid" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_Dealers_Addresses1" FromRole="Dealers" ToRole="Addresses" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_Dealers_Admin" FromRole="Dealers" ToRole="Admin" />
+          <NavigationProperty Name="CarPurchases" Relationship="Self.FK_CarPurchases_Dealers" FromRole="Dealers" ToRole="CarPurchases" />
+        </EntityType>
+        <EntityType Name="EMI">
+          <Key>
+            <PropertyRef Name="EmiId" />
+          </Key>
+          <Property Name="EmiId" Type="Guid" Nullable="false" />
+          <Property Name="BankId" Type="Guid" Nullable="false" />
+          <Property Name="CardType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Period" Type="Int32" Nullable="false" />
+          <Property Name="Interest" Type="Decimal" Precision="7" Scale="4" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="Isdeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Bank" Relationship="Self.FK_EMIs_Banks" FromRole="EMIs" ToRole="Banks" />
+          <NavigationProperty Name="CarPurchases" Relationship="Self.FK_CarPurchases_EMIs" FromRole="EMIs" ToRole="CarPurchases" />
+        </EntityType>
+        <EntityType Name="FAQ">
+          <Key>
+            <PropertyRef Name="FaqId" />
+          </Key>
+          <Property Name="FaqId" Type="Guid" Nullable="false" />
+          <Property Name="Question" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Answer" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="FeedbackId" />
+          </Key>
+          <Property Name="FeedbackId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CategoryId" Type="Guid" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FeedbackCategory" Relationship="Self.FK_Feedback_FeedbackCategory" FromRole="Feedback" ToRole="FeedbackCategory" />
+        </EntityType>
+        <EntityType Name="FeedbackCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedback_FeedbackCategory" FromRole="FeedbackCategory" ToRole="Feedback" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceId" />
+          </Key>
+          <Property Name="InvoiceId" Type="Guid" Nullable="false" />
+          <Property Name="TranscationId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Frequency" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CarPurchases" Relationship="Self.FK_CarPurchases_Invoices" FromRole="Invoices" ToRole="CarPurchases" />
+          <NavigationProperty Name="CarRents" Relationship="Self.FK_CarRents_Invoices" FromRole="Invoices" ToRole="CarRents" />
+        </EntityType>
+        <EntityType Name="Offer">
+          <Key>
+            <PropertyRef Name="OfferId" />
+          </Key>
+          <Property Name="OfferId" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Details" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="PaymentMethodId" />
+          </Key>
+          <Property Name="PaymentMethodId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CarPurchases" Relationship="Self.FK_CarPurchases_PaymentMethods" FromRole="PaymentMethods" ToRole="CarPurchases" />
+          <NavigationProperty Name="CarRents" Relationship="Self.FK_CarRents_PaymentMethods" FromRole="PaymentMethods" ToRole="CarRents" />
+        </EntityType>
+        <EntityType Name="Pincode">
+          <Key>
+            <PropertyRef Name="PincodeId" />
+          </Key>
+          <Property Name="PincodeId" Type="Guid" Nullable="false" />
+          <Property Name="CityId" Type="Guid" Nullable="false" />
+          <Property Name="Pincode1" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Addresses_Pincodes" FromRole="Pincodes" ToRole="Addresses" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Pincodes_Cities" FromRole="Pincodes" ToRole="Cities" />
+        </EntityType>
+        <EntityType Name="Promo">
+          <Key>
+            <PropertyRef Name="PromoId" />
+          </Key>
+          <Property Name="PromoId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="PromoCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Details" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="Isdeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CarPurchases" Relationship="Self.FK_CarPurchases_Promo" FromRole="Promo" ToRole="CarPurchases" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Promo_Users" FromRole="Promo" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="ReviewId" />
+          </Key>
+          <Property Name="ReviewId" Type="Guid" Nullable="false" />
+          <Property Name="CarId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="Discription" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="ModifiedAt" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Car" Relationship="Self.FK_Reviews_Cars" FromRole="Reviews" ToRole="Cars" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Reviews_Users" FromRole="Reviews" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateId" />
+          </Key>
+          <Property Name="StateId" Type="Guid" Nullable="false" />
+          <Property Name="CountryId" Type="Guid" Nullable="false" />
+          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cities" Relationship="Self.FK_Cities_States" FromRole="States" ToRole="Cities" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_States_Countries" FromRole="States" ToRole="Countries" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="320" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HashPassword" Type="Binary" MaxLength="32" FixedLength="true" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AddressId" Type="Guid" />
+          <Property Name="IdProof" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="Points" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="ModifiedAt" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Guid" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordSalt" Type="Binary" MaxLength="32" FixedLength="true" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_Users_Addresses" FromRole="Users" ToRole="Addresses" />
+          <NavigationProperty Name="CarPurchases" Relationship="Self.FK_CarPurchases_Users" FromRole="Users" ToRole="CarPurchases" />
+          <NavigationProperty Name="CarRents" Relationship="Self.FK_CarRents_Users" FromRole="Users" ToRole="CarRents" />
+          <NavigationProperty Name="Promoes" Relationship="Self.FK_Promo_Users" FromRole="Users" ToRole="Promo" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Users" FromRole="Users" ToRole="Reviews" />
+        </EntityType>
+        <Association Name="FK_Addresses_Pincodes">
+          <End Role="Pincodes" Type="Self.Pincode" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pincodes">
+              <PropertyRef Name="PincodeId" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="PincodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_Addresses">
+          <End Role="Addresses" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="CarPurchases" Type="Self.CarPurchas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarRents_Addresses">
+          <End Role="Addresses" Type="Self.Address" Multiplicity="1" />
+          <End Role="CarRents" Type="Self.CarRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="CarRents">
+              <PropertyRef Name="PickupPoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarRents_Addresses1">
+          <End Role="Addresses" Type="Self.Address" Multiplicity="1" />
+          <End Role="CarRents" Type="Self.CarRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="CarRents">
+              <PropertyRef Name="DropPoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_Addresses">
+          <End Role="Addresses" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Cars" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dealers_Addresses1">
+          <End Role="Addresses" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Dealers" Type="Self.Dealer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Dealers">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Addresses">
+          <End Role="Addresses" Type="Self.Address" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="AddressId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dealers_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="Dealers" Type="Self.Dealer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dealers">
+              <PropertyRef Name="VerifiedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMIs_Banks">
+          <End Role="Banks" Type="Self.Bank" Multiplicity="1" />
+          <End Role="EMIs" Type="Self.EMI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Banks">
+              <PropertyRef Name="BankId" />
+            </Principal>
+            <Dependent Role="EMIs">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarCategoryMapper_CarCategories">
+          <End Role="CarCategories" Type="Self.CarCategory" Multiplicity="1" />
+          <End Role="CarCategoryMapper" Type="Self.CarCategoryMapper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarCategoryMapper">
+              <PropertyRef Name="CarCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cars_CarCategories">
+          <End Role="CarCategories" Type="Self.CarCategory" Multiplicity="0..1" />
+          <End Role="Cars" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarCategories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="CarCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarCategoryMapper_Cars">
+          <End Role="Cars" Type="Self.Car" Multiplicity="1" />
+          <End Role="CarCategoryMapper" Type="Self.CarCategoryMapper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarCategoryMapper">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_CarVarients">
+          <End Role="CarVarients" Type="Self.CarVarient" Multiplicity="1" />
+          <End Role="CarPurchases" Type="Self.CarPurchas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarVarients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="CarVarientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_Currencies">
+          <End Role="Currencies" Type="Self.Currency" Multiplicity="1" />
+          <End Role="CarPurchases" Type="Self.CarPurchas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="CurrencyId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_Dealers">
+          <End Role="Dealers" Type="Self.Dealer" Multiplicity="1" />
+          <End Role="CarPurchases" Type="Self.CarPurchas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dealers">
+              <PropertyRef Name="DealerId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="DealerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_EMIs">
+          <End Role="EMIs" Type="Self.EMI" Multiplicity="0..1" />
+          <End Role="CarPurchases" Type="Self.CarPurchas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMIs">
+              <PropertyRef Name="EmiId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="EmiId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_Invoices">
+          <End Role="Invoices" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="CarPurchases" Type="Self.CarPurchas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_PaymentMethods">
+          <End Role="PaymentMethods" Type="Self.PaymentMethod" Multiplicity="1" />
+          <End Role="CarPurchases" Type="Self.CarPurchas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethods">
+              <PropertyRef Name="PaymentMethodId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="PaymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_Promo">
+          <End Role="Promo" Type="Self.Promo" Multiplicity="0..1" />
+          <End Role="CarPurchases" Type="Self.CarPurchas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Promo">
+              <PropertyRef Name="PromoId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="PromoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarPurchases_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="CarPurchases" Type="Self.CarPurchas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CarPurchases">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarRents_CarVarients">
+          <End Role="CarVarients" Type="Self.CarVarient" Multiplicity="1" />
+          <End Role="CarRents" Type="Self.CarRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarVarients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarRents">
+              <PropertyRef Name="CarVarientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarRents_Currencies">
+          <End Role="Currencies" Type="Self.Currency" Multiplicity="1" />
+          <End Role="CarRents" Type="Self.CarRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currencies">
+              <PropertyRef Name="CurrencyId" />
+            </Principal>
+            <Dependent Role="CarRents">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarRents_Invoices">
+          <End Role="Invoices" Type="Self.Invoice" Multiplicity="1" />
+          <End Role="CarRents" Type="Self.CarRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="InvoiceId" />
+            </Principal>
+            <Dependent Role="CarRents">
+              <PropertyRef Name="InvoiceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarRents_PaymentMethods">
+          <End Role="PaymentMethods" Type="Self.PaymentMethod" Multiplicity="1" />
+          <End Role="CarRents" Type="Self.CarRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethods">
+              <PropertyRef Name="PaymentMethodId" />
+            </Principal>
+            <Dependent Role="CarRents">
+              <PropertyRef Name="PaymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarRents_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="CarRents" Type="Self.CarRent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CarRents">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CarVarients_Cars">
+          <End Role="Cars" Type="Self.Car" Multiplicity="1" />
+          <End Role="CarVarients" Type="Self.CarVarient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarVarients">
+              <PropertyRef Name="carId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Cars">
+          <End Role="Cars" Type="Self.Car" Multiplicity="1" />
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="CarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cities_States">
+          <End Role="States" Type="Self.State" Multiplicity="1" />
+          <End Role="Cities" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="States">
+              <PropertyRef Name="StateId" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pincodes_Cities">
+          <End Role="Cities" Type="Self.City" Multiplicity="1" />
+          <End Role="Pincodes" Type="Self.Pincode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="CityId" />
+            </Principal>
+            <Dependent Role="Pincodes">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Currencies_Countries">
+          <End Role="Countries" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="Currencies" Type="Self.Currency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="Currencies">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_States_Countries">
+          <End Role="Countries" Type="Self.Country" Multiplicity="1" />
+          <End Role="States" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="CountryId" />
+            </Principal>
+            <Dependent Role="States">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_FeedbackCategory">
+          <End Role="FeedbackCategory" Type="Self.FeedbackCategory" Multiplicity="0..1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeedbackCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promo_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Promo" Type="Self.Promo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Promo">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reviews_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyCarDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Banks" EntityType="Self.Bank" />
+          <EntitySet Name="CarCategories" EntityType="Self.CarCategory" />
+          <EntitySet Name="CarCategoryMappers" EntityType="Self.CarCategoryMapper" />
+          <EntitySet Name="CarPurchases" EntityType="Self.CarPurchas" />
+          <EntitySet Name="CarRents" EntityType="Self.CarRent" />
+          <EntitySet Name="Cars" EntityType="Self.Car" />
+          <EntitySet Name="CarVarients" EntityType="Self.CarVarient" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="ContactUs" EntityType="Self.ContactU" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="Currencies" EntityType="Self.Currency" />
+          <EntitySet Name="Dealers" EntityType="Self.Dealer" />
+          <EntitySet Name="EMIs" EntityType="Self.EMI" />
+          <EntitySet Name="FAQs" EntityType="Self.FAQ" />
+          <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+          <EntitySet Name="FeedbackCategories" EntityType="Self.FeedbackCategory" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+          <EntitySet Name="Offers" EntityType="Self.Offer" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethod" />
+          <EntitySet Name="Pincodes" EntityType="Self.Pincode" />
+          <EntitySet Name="Promoes" EntityType="Self.Promo" />
+          <EntitySet Name="Reviews" EntityType="Self.Review" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Addresses_Pincodes" Association="Self.FK_Addresses_Pincodes">
+            <End Role="Pincodes" EntitySet="Pincodes" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_Addresses" Association="Self.FK_CarPurchases_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarRents_Addresses" Association="Self.FK_CarRents_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="CarRents" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarRents_Addresses1" Association="Self.FK_CarRents_Addresses1">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="CarRents" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_Addresses" Association="Self.FK_Cars_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dealers_Addresses1" Association="Self.FK_Dealers_Addresses1">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Dealers" EntitySet="Dealers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Addresses" Association="Self.FK_Users_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dealers_Admin" Association="Self.FK_Dealers_Admin">
+            <End Role="Admin" EntitySet="Admins" />
+            <End Role="Dealers" EntitySet="Dealers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMIs_Banks" Association="Self.FK_EMIs_Banks">
+            <End Role="Banks" EntitySet="Banks" />
+            <End Role="EMIs" EntitySet="EMIs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarCategoryMapper_CarCategories" Association="Self.FK_CarCategoryMapper_CarCategories">
+            <End Role="CarCategories" EntitySet="CarCategories" />
+            <End Role="CarCategoryMapper" EntitySet="CarCategoryMappers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cars_CarCategories" Association="Self.FK_Cars_CarCategories">
+            <End Role="CarCategories" EntitySet="CarCategories" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarCategoryMapper_Cars" Association="Self.FK_CarCategoryMapper_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="CarCategoryMapper" EntitySet="CarCategoryMappers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_CarVarients" Association="Self.FK_CarPurchases_CarVarients">
+            <End Role="CarVarients" EntitySet="CarVarients" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_Currencies" Association="Self.FK_CarPurchases_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_Dealers" Association="Self.FK_CarPurchases_Dealers">
+            <End Role="Dealers" EntitySet="Dealers" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_EMIs" Association="Self.FK_CarPurchases_EMIs">
+            <End Role="EMIs" EntitySet="EMIs" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_Invoices" Association="Self.FK_CarPurchases_Invoices">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_PaymentMethods" Association="Self.FK_CarPurchases_PaymentMethods">
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_Promo" Association="Self.FK_CarPurchases_Promo">
+            <End Role="Promo" EntitySet="Promoes" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarPurchases_Users" Association="Self.FK_CarPurchases_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CarPurchases" EntitySet="CarPurchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarRents_CarVarients" Association="Self.FK_CarRents_CarVarients">
+            <End Role="CarVarients" EntitySet="CarVarients" />
+            <End Role="CarRents" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarRents_Currencies" Association="Self.FK_CarRents_Currencies">
+            <End Role="Currencies" EntitySet="Currencies" />
+            <End Role="CarRents" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarRents_Invoices" Association="Self.FK_CarRents_Invoices">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="CarRents" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarRents_PaymentMethods" Association="Self.FK_CarRents_PaymentMethods">
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+            <End Role="CarRents" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarRents_Users" Association="Self.FK_CarRents_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CarRents" EntitySet="CarRents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CarVarients_Cars" Association="Self.FK_CarVarients_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="CarVarients" EntitySet="CarVarients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Cars" Association="Self.FK_Reviews_Cars">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cities_States" Association="Self.FK_Cities_States">
+            <End Role="States" EntitySet="States" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pincodes_Cities" Association="Self.FK_Pincodes_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Pincodes" EntitySet="Pincodes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Currencies_Countries" Association="Self.FK_Currencies_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Currencies" EntitySet="Currencies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_States_Countries" Association="Self.FK_States_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="States" EntitySet="States" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_FeedbackCategory" Association="Self.FK_Feedback_FeedbackCategory">
+            <End Role="FeedbackCategory" EntitySet="FeedbackCategories" />
+            <End Role="Feedback" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promo_Users" Association="Self.FK_Promo_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Promo" EntitySet="Promoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reviews_Users" Association="Self.FK_Reviews_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyCarDBModelStoreContainer" CdmEntityContainer="MyCarDBEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="MyCarDBModel.Address">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="LocalAddress" ColumnName="LocalAddress" />
+                <ScalarProperty Name="PincodeId" ColumnName="PincodeId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="MyCarDBModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Passowrd" ColumnName="Passowrd" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banks">
+            <EntityTypeMapping TypeName="MyCarDBModel.Bank">
+              <MappingFragment StoreEntitySet="Banks">
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarCategories">
+            <EntityTypeMapping TypeName="MyCarDBModel.CarCategory">
+              <MappingFragment StoreEntitySet="CarCategories">
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="ModifyAt" ColumnName="ModifyAt" />
+                <ScalarProperty Name="CreaatedBy" ColumnName="CreaatedBy" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarCategoryMappers">
+            <EntityTypeMapping TypeName="MyCarDBModel.CarCategoryMapper">
+              <MappingFragment StoreEntitySet="CarCategoryMapper">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="CarCategoryId" ColumnName="CarCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarPurchases">
+            <EntityTypeMapping TypeName="MyCarDBModel.CarPurchas">
+              <MappingFragment StoreEntitySet="CarPurchases">
+                <ScalarProperty Name="CarPurchaseId" ColumnName="CarPurchaseId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="DealerId" ColumnName="DealerId" />
+                <ScalarProperty Name="CarVarientId" ColumnName="CarVarientId" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+                <ScalarProperty Name="PromoId" ColumnName="PromoId" />
+                <ScalarProperty Name="EmiId" ColumnName="EmiId" />
+                <ScalarProperty Name="IsFullPayment" ColumnName="IsFullPayment" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarRents">
+            <EntityTypeMapping TypeName="MyCarDBModel.CarRent">
+              <MappingFragment StoreEntitySet="CarRents">
+                <ScalarProperty Name="CarRentId" ColumnName="CarRentId" />
+                <ScalarProperty Name="CarVarientId" ColumnName="CarVarientId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+                <ScalarProperty Name="PickupPoint" ColumnName="PickupPoint" />
+                <ScalarProperty Name="ReturningDate" ColumnName="ReturningDate" />
+                <ScalarProperty Name="DropPoint" ColumnName="DropPoint" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="IsPaymentDone" ColumnName="IsPaymentDone" />
+                <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="MyCarDBModel.Car">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="LongDescription" ColumnName="LongDescription" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="ModifyAt" ColumnName="ModifyAt" />
+                <ScalarProperty Name="CreaatedBy" ColumnName="CreaatedBy" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CarCategoryId" ColumnName="CarCategoryId" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Kilometers" ColumnName="Kilometers" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarVarients">
+            <EntityTypeMapping TypeName="MyCarDBModel.CarVarient">
+              <MappingFragment StoreEntitySet="CarVarients">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="carId" ColumnName="carId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="MyCarDBModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactUs">
+            <EntityTypeMapping TypeName="MyCarDBModel.ContactU">
+              <MappingFragment StoreEntitySet="ContactUs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Query" ColumnName="Query" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="MyCarDBModel.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="MyCarDBModel.Currency">
+              <MappingFragment StoreEntitySet="Currencies">
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dealers">
+            <EntityTypeMapping TypeName="MyCarDBModel.Dealer">
+              <MappingFragment StoreEntitySet="Dealers">
+                <ScalarProperty Name="DealerId" ColumnName="DealerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="VerifiedBy" ColumnName="VerifiedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMIs">
+            <EntityTypeMapping TypeName="MyCarDBModel.EMI">
+              <MappingFragment StoreEntitySet="EMIs">
+                <ScalarProperty Name="EmiId" ColumnName="EmiId" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="CardType" ColumnName="CardType" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FAQs">
+            <EntityTypeMapping TypeName="MyCarDBModel.FAQ">
+              <MappingFragment StoreEntitySet="FAQs">
+                <ScalarProperty Name="FaqId" ColumnName="FaqId" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="MyCarDBModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="FeedbackId" ColumnName="FeedbackId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeedbackCategories">
+            <EntityTypeMapping TypeName="MyCarDBModel.FeedbackCategory">
+              <MappingFragment StoreEntitySet="FeedbackCategory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="MyCarDBModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoices">
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="TranscationId" ColumnName="TranscationId" />
+                <ScalarProperty Name="Frequency" ColumnName="Frequency" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offers">
+            <EntityTypeMapping TypeName="MyCarDBModel.Offer">
+              <MappingFragment StoreEntitySet="Offers">
+                <ScalarProperty Name="OfferId" ColumnName="OfferId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="MyCarDBModel.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethods">
+                <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pincodes">
+            <EntityTypeMapping TypeName="MyCarDBModel.Pincode">
+              <MappingFragment StoreEntitySet="Pincodes">
+                <ScalarProperty Name="PincodeId" ColumnName="PincodeId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Pincode1" ColumnName="Pincode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promoes">
+            <EntityTypeMapping TypeName="MyCarDBModel.Promo">
+              <MappingFragment StoreEntitySet="Promo">
+                <ScalarProperty Name="PromoId" ColumnName="PromoId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PromoCode" ColumnName="PromoCode" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="MyCarDBModel.Review">
+              <MappingFragment StoreEntitySet="Reviews">
+                <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
+                <ScalarProperty Name="CarId" ColumnName="CarId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Discription" ColumnName="Discription" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="MyCarDBModel.State">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MyCarDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HashPassword" ColumnName="HashPassword" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="IdProof" ColumnName="IdProof" />
+                <ScalarProperty Name="Points" ColumnName="Points" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedAt" ColumnName="ModifiedAt" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

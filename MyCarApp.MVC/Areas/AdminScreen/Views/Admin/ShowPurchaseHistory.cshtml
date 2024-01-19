@@ -1,0 +1,71 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<MyCarApp.BE.ViewModels.PdfVM>
+
+@{
+    ViewBag.Title = "All Purchase History";
+    ViewBag.Purchase = "background:#2196f3;border-radius:50px";
+}
+
+<h2>Show Purchase History</h2>
+<div class="table-responsive-sm">
+    <table id="Purchase" class="table table-striped table-bordered" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Car Name</th>
+                <th>Car Varient Name</th>
+                <th>Price</th>
+                <th>Customer</th>
+                <th>Address</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CarName</td>
+                    <td>@item.CarVarientName</td>
+                    <td>&#8377; @item.Price</td>
+                    <td>@item.UserName</td>
+                    <td>@item.UserAddress</td>
+                    <td>@item.Date</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@*<div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3">
+                <div class="card1" style="border: 3px solid #fff; box-shadow: 7px 10px 20px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%); border-radius: 15px;padding-left: 15px; margin-bottom:10px">
+
+                    <div class="card-body1">
+                        <b>Car Name : </b>@item.CarName - @item.CarVarientName<br />
+                        <b>Price : </b>&#8377; @item.Price<br />
+                        <b>Customer : </b>@item.UserName<br />
+                        <b>Address : </b>@item.UserAddress<br />
+                        <b>Date : </b>@item.Date<br />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>*@
+<div class="filter-layout" style="flex-direction:column">
+    @using (Html.BeginForm("ExportPurchaseToExcel", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <div>
+            <input type="submit" class="btn btn-success" value="Export Purchase History" />
+        </div>
+
+    }
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("ShowPurchaseHistory",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+

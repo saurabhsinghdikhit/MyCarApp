@@ -1,0 +1,72 @@
+﻿@model MyCarApp.BE.BussinessEntities.Feedback
+
+@{
+    ViewBag.Title = "Feedback";
+}
+<div class="breadcrumb-option">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="/User/Index"><i class="fa fa-home" style="padding-right: 5px;"></i>Home</a>
+                    <span>Feedback</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="container"> 
+    <h2>Give Your Feedback</h2>
+
+    <hr />
+    <div style="float:right">
+        <img src="~/Images/Feedback.gif" style="height:350px;border-radius" />
+
+    </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.Label("Name", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label("Category", htmlAttributes: new { @class = "control-label col-md-2" })
+        <select class="form-control" name="CategoryId">
+            <option value="31acae95-e9cd-4b03-8ff4-e1bb7007ad65">Buy a new car</option>
+            <option value="553666af-7988-490d-9d78-ef597937897f">Buy a used car</option>
+            <option value="fd06527b-6ad0-4b09-8a3c-2acb3bf2c819">Renting</option>
+            <option value="ce5b19bd-b3a1-4a46-93a0-5da37305c341">Subscribing</option>
+            <option value="43c2d7cf-5c22-4bda-b623-ca428a6b8174">Service</option>
+            <option value="b932f5e1-d0e5-49c1-80a2-75c05f6153f3">Website</option>
+            <option value="f9bfaae6-4c20-4a0b-a1b2-d38f47e04614">Others</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+
+        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Write Your Feedback...", style = "height:170px" } })
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

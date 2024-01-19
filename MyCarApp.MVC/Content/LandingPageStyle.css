@@ -1,0 +1,154 @@
+﻿* {
+    padding: 5px;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: url('../Images/LandingPagebg.jpg');
+    
+}
+
+
+.container {
+    margin: 0px;
+    height: auto;
+    width: auto;
+    align-content: center;
+    align-items: center;
+    
+}
+.landingBox {
+  
+    background: #00adb5;
+    align-items: center;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    margin: 80px;
+    box-shadow: -10px 8px 20px 0 rgba(0, 0, 0, 0.2), 9px -7px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #fff;
+    border-radius: 20px;
+}
+.landingBox h1{
+    color:white;
+    display:flex;
+    align-content:center;
+    justify-content:center;
+}
+
+@media only screen and (min-width: 800px) {
+    #containerBuyOrRent{
+        padding-left : 150px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    #container1 {
+        padding-left: 150px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    #containerNewCar {
+        padding-left: 150px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    #containerOldCar {
+        padding-left: 150px;
+    }
+}
+@media only screen and (min-width: 800px) {
+    #Renting {
+        padding-left: 150px;
+    }
+}
+
+
+
+.imageBox {
+    background-color: aquamarine;
+    float: left;
+    width: 40%;
+    height: 200px;
+    margin-right: 10%;
+}
+
+.imageBox h2 {
+    color: black;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+}
+
+.skipToSite {
+    position: fixed;
+    width: 300px;
+    height: auto;
+    bottom: 40px;
+    right: 40px;
+    padding: 15px;
+    border-radius: 30px;
+    box-shadow: -10px 8px 20px 0 rgba(0, 0, 0, 0.2), 9px -7px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #222831;
+    color: #FFF;
+    z-index: 5;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.airportPickup {
+    background: #00adb5;
+    position: absolute;
+    bottom: 0px;
+    padding: 2px 20px 20px 20px;
+    margin: 10px;
+    right: 20px;
+    box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.2), 1px -1px 7px 1px rgba(0, 0, 0, 0.19);
+    background-color: #f08a5d;
+    border-radius: 20px;
+}
+
+#buyCar {
+    width: auto;
+    height: 100%;
+}
+
+#rentCar {
+    width: auto;
+    height: 100%;
+}
+
+.landingBox h2 {
+    background-color: antiquewhite;
+    font-display: block;
+    color: black;
+    font-family: sans-serif;
+    font-weight: bolder;
+}
+
+.card {
+    background-color: antiquewhite;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border: ridge;
+}
+
+.card-img-top {
+    padding-top: 0px;
+    margin-left: 0px;
+    width: 90%;
+}
+
+.card p {
+    color: black;
+    font-weight: bolder;
+    font-display: block;
+}

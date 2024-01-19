@@ -1,0 +1,60 @@
+﻿<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .approve {
+            font-size: 120px;
+            color: rgb(0, 226, 0);
+            margin-bottom: 20px;
+        }
+
+        body {
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .outer-div {
+            border: 2px solid rgb(0, 255, 0);
+            margin-left: 300px;
+            margin-right: 300px;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.25);
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-div">
+        <i class="fa fa-check approve"></i>
+        <hr>
+        <p>
+            Greerings {{ User }},
+        </p>
+        <p>
+            your Request for Refund is Successfully approved, We also refunded
+        </p>
+        <p style="font-size: 1.35rem;">
+            <b>Amount - {{ Amount }}</b>
+        </p>
+        <p>
+            In your Account.
+        </p>
+        <p>
+            In Case of any problem/Query you always reach out to us via <b>Contact Us</b> page on <b>MyCarApp</b>
+        </p>
+        <p>
+            Hope, We Reach to your Expectation, And your experience with us is seemless, Hope you visit Again.
+        </p>
+        <b>
+            <p style="margin-top: 70px;margin-left: 25px;text-align: start;">
+                Regards,
+            </p>
+            <p style="text-align: start;margin-left: 25px;">
+                Team MyCarApp
+            </p>
+        </b>
+    </div>
+</body>
+</html>

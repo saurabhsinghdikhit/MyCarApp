@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        table, td, th {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10rem;
+            font-size: 15px;
+            margin: auto;
+        }
+
+        th, td {
+            font-size: 20px;
+        }
+
+        .greetings{
+            font-size: 20px;
+        }
+
+        .para-two{
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <p class="greetings"><b>Congratulations {{ user }},</b></p>
+    <div class="para-two">
+        <p>Your purchase of {{ varient }} is successful, Hope we meet your requirments.</p>
+        <p>Also make sure to give feedback about your experience with us.</p>
+        <p>You will going to enjoy your {{ varient }} soon.</p>
+    </div>
+    <div style="margin-top: 30px;">
+        <table>
+            <tbody>
+                <tr>
+                    <th>Car Varient</th>
+                    <td>{{ varient }}</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>{{ price }}</td>
+                </tr>
+                <tr>
+                    <th>Date Of Booking</th>
+                    <td>{{ date }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="margin-top: 30px">
+        <p><b>Greetings,</b></p>
+        <p>Team MyCarApp</p>
+    </div>
+</body>
+</html>

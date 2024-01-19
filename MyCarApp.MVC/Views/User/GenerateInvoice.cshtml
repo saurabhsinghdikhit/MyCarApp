@@ -1,0 +1,93 @@
+﻿@model MyCarApp.BE.ViewModels.PdfVM
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Generate Purchase Invoice</title>
+    @Styles.Render("~/Content/userCss")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    <link href="~/Content/Invoice.css" rel="stylesheet" />
+</head>
+<body>
+    @if (Model != null)
+    {
+        <div class="container" style="padding-left: 100px; padding-right:100px;">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 body-main" style="padding-left: 50px; padding-right: 50px;">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4"> <img class="img" alt="MyCarApp" src="~/myCarAppBrand.png" /> </div>
+                            <div class="col-md-8 text-right" style="font-size:14px">
+                                <h4><strong>To</strong></h4>
+                                <h4 style="color: dodgerblue; font-size: 20px;"><strong>@Model.UserName</strong></h4>
+                                <p>@Model.UserAddress</p>
+                            </div>
+                        </div> <br />
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <h2>INVOICE</h2>
+                            </div>
+                        </div> <br />
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <h5><strong>Product Description</strong></h5>
+                                    </th>
+                                    <th>
+                                        <h5><strong>Amount</strong></h5>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="font-size: 14px;">
+                                    <td class="col-md-9">@Model.CarName - @Model.CarVarientName</td>
+                                    <td class="col-md-3"><i class="fas fa-rupee-sign" area-hidden="true"></i>&#8377; @Math.Round(Model.Price,2)</td>
+                                </tr>
+                                <tr style="color:dodgerblue">
+                                    <td class="text-right">
+                                        <h4><strong>Total:</strong></h4>
+                                    </td>
+                                    <td class="text-left">
+                                        <h4><strong><i class="fas fa-rupee-sign" area-hidden="true"></i>&#8377; @Math.Round(Model.Price, 2) </strong></h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"style="font-size:14px">
+                            <p><b>Date :</b> @Model.Date</p> <br />
+                            <br/>
+                            <br/>
+                            <img src="~/Images/AmitSign.png" alt="Amit Degadwala" />
+                            <p><b>Signature</b></p>
+                        </div>
+                        <div class="col-md-9 pull-right" style="text-align:right">
+                            <h4><strong>Dealer Info</strong></h4>
+                            <h5>@Model.DealerName</h5>
+                            <h5>@Model.DealerAddress</h5>
+                            <h5>@Model.DealerContact</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    }
+    else
+    {
+        Response.Redirect("/User/UserProfile");
+    }
+</body>
+</html>

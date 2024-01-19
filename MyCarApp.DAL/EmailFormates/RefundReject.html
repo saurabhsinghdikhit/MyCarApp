@@ -1,0 +1,60 @@
+﻿<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .reject {
+            font-size: 120px;
+            color: rgb(235, 0, 0);
+            ;
+            margin-bottom: 20px;
+        }
+
+        body {
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .outer-div {
+            border: 2px solid rgb(235, 0, 0);
+            ;
+            margin-left: 300px;
+            margin-right: 300px;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            box-shadow: 0 0 25px rgb(235, 0, 0);
+            ;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer-div">
+        <i class="material-icons reject">cancel</i>
+        <hr>
+        <p>
+            Hello {{ User }},
+        </p>
+        <p>
+            unfortunately your Request for Refund is Rejected, because of reason below
+        </p>
+        <p style="font-size: 1.35rem;">
+            <b>Reason - {{ Reason }}</b>
+        </p>
+        <p>
+            In Case of any problem/Query you always reach out to us via <b>Contact Us</b> page on <b>MyCarApp</b>
+        </p>
+        <p>
+            Hope, We Reach to your Expectation, And your experience with us is seemless, Hope you visit Again.
+        </p>
+        <b>
+            <p style="margin-top: 70px;margin-left: 25px;text-align: start;">
+                Regards,
+            </p>
+            <p style="text-align: start;margin-left: 25px;">
+                Team MyCarApp
+            </p>
+        </b>
+    </div>
+</body>
+</html>

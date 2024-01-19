@@ -1,0 +1,112 @@
+﻿@model MyCarApp.BE.BussinessEntities.Car
+
+@{
+    ViewBag.Title = "Cars";
+    ViewBag.Vehicle = "background:#2196f3;border-radius:50px";
+}
+<br />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <div class="chart-card">
+            <div class="chart-text">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+            <img src="~/Uploads/CarsImages/@Model.Image" width="250px" height="250px" />
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="user-card">
+            <div class="user-details">
+                <p><strong>@Html.DisplayNameFor(model => model.Name)</strong>:  @Html.DisplayFor(model => model.Name)</p>
+                <p><strong>Short Description</strong>:  @Html.DisplayFor(model => model.ShortDescription)</p>
+                <p><strong>Long Description</strong>:  @Html.DisplayFor(model => model.LongDescription)</p>
+                <p><strong>@Html.DisplayNameFor(model => model.Brand)</strong>:  @Html.DisplayFor(model => model.Brand)</p>
+                @if (Model.Kilometers > 0)
+                {
+                    <p><strong>@Html.DisplayNameFor(model => model.Kilometers)</strong>:  @Html.DisplayFor(model => model.Kilometers)</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add Varient</button>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myAddressModal">Add Address</button>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Car Varient</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/AdminScreen/Cars/AddVarient" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="hidden" name="carId" class="form-control" value="@Model.Id" />
+                        <input type="file" name="varientImage" class="form-control" placeholder="Varient Image" />
+                        <br /><input type="text" name="varientName" class="form-control" placeholder="Varient Name" />
+                        <br /><input type="number" name="carVarientPrice" required class="form-control" placeholder="input car varient price" />
+                        <br /><input type="submit" class="btn btn-success form-control" value="insert" />
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myAddressModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Car Address</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/AdminScreen/Cars/AddAddress" method="post">
+                    <div class="form-group">
+                        <input type="hidden" name="carId" class="form-control" value="@Model.Id" />
+                        <input type="text" name="localAddress" required class="form-control" required placeholder="input car local Address" />
+                        <br /><select class="form-control" id="countryDropdown" name="countryDropdown"></select>
+                        <br /><select class="form-control" id="stateDropdown" name="stateDropdown"></select>
+                        <br /><select class="form-control" id="CityDropdown" name="CityDropdown"></select>
+                        <br /><select class="form-control" id="PincodeDropdown" name="PincodeDropdown"></select>
+
+                        <br /><input type="submit" class="btn btn-success form-control" value="insert" />
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<h2 class="text-center">Varients</h2>
+@foreach (var item in Model.CarVarients)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="varient-card">
+                <div class="user-details">
+                    <p><strong>Varient Name</strong>:  @item.Name</p>
+                    <p><strong>&#8360;</strong>:  @Html.DisplayFor(model => item.Price)</p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br />
+}
+
+@section scripts{
+
+    <script src="~/Scripts/AddressDropdown.js"></script>
+}
+

@@ -1,0 +1,119 @@
+﻿@using MyCarApp.BE.ViewModels;
+@{
+    ViewBag.Title = "Dashboard";
+    ViewBag.Home = "background:#2196f3;border-radius:50px";
+}
+@{
+    Dictionary<string, IEnumerable<TotalCarsVM>> cars = ViewBag.Cars;
+    List<string> brand = new List<string>();
+    List<int> total = new List<int>();
+}
+@if (ViewBag.Cars != null)
+{
+    <div class="row" style="padding:50px">
+        <div class="col-md-6">
+            <div class="chart-card" style="height:100%">
+                <div class="chart-text">
+                    Variety of available cars
+                </div>
+                <div class="user-details">
+                    <canvas id="polar-chart1" class="ct-chart" style="display: block; width: 300px; height: 300px;"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="chart-card" style="height:100%">
+                <div class="chart-text">
+                    Total Purchased Cars
+                </div>
+                <div class="user-details">
+                    <canvas id="doughnut-chart1" class="ct-chart" style="display: block; width: 300px; height: 300px;">></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="user-card" style="height:100%">
+            <div class="user-img">
+                <img src="~/MyCarApp.png" />
+            </div>
+            <div class="user-text">
+                Welcome Back Admin!
+            </div>
+            <div class="user-details">
+                <p><strong>Email :</strong>  @User.Identity.Name</p>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/chart.min.js"></script>
+    <script src="~/Scripts/mychart.js"></script>
+    <script>
+        @foreach (var item in cars["total"])
+        {
+            brand.Add(item.CarName);
+            total.Add(item.CarCount);
+        }
+        //Polar Chart1
+        var data = '@String.Join(",",total)';  //for data value
+        var city = '@String.Join(",",brand)';   //for company value
+        new Chart(document.getElementById("polar-chart1"), {
+            type: 'polarArea',
+            data: {
+                labels: city.split(','),
+                datasets: [
+                    {
+
+                        backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                        data: data.split(',')
+                    }
+                ]
+            },
+            options: {
+                legend: { display: true },
+                title: {
+                    display: false,
+
+                }
+            }
+        });
+    </script>
+    <script>
+        @{
+            brand.Clear();
+            total.Clear();
+        }
+        @foreach (var item in cars["purchase"])
+        {
+            brand.Add(item.CarName);
+            total.Add(item.CarCount);
+        }
+        var data = '@String.Join(",",total)';  //for data value
+        var city = '@String.Join(",",brand)';   //for city value
+        //Doughnut Chart1
+        new Chart(document.getElementById("doughnut-chart1"), {
+            type: 'doughnut',
+            data: {
+                labels: city.split(','),
+                datasets: [
+                    {
+
+                        backgroundColor: ["#28a745", "#ffc107", "#dc3545"],
+                        data: data.split(',')
+                    }
+                ]
+            },
+            options: {
+                legend: { display: true },
+                title: {
+                    display: false,
+
+                }
+            }
+
+        });
+    </script>
+}

@@ -1,0 +1,93 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<MyCarApp.BE.BussinessEntities.Car>
+
+@{
+    ViewBag.Title = "Search Cars";
+}
+<div class="breadcrumb-option">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="/User/index"><i class="fa fa-home" style="padding-right: 5px;"></i>Home</a>
+                    <a href="#">@(Request.QueryString["category"] == "new" ? "New Cars" : "Used Cars")</a>
+                    <a href="#">
+                        @(Request.QueryString["budget"] == "3-5lac" ? "3 to 5 lakh" :
+                    Request.QueryString["budget"] == "5-10lac"?"5 to 10 Lakh":
+                    Request.QueryString["budget"] == "10-15lac" ? "10 to 15 Lakh" :
+                    Request.QueryString["budget"] == "15-30lac" ? "15 to 30 Lakh" : "Above 30 Lakh" )
+                    </a>
+                    @if (Request.QueryString["category"] == "new")
+                    {
+                        <span>@Request.QueryString["brand"]</span>
+                    }
+                    @if (Request.QueryString["category"] == "used")
+                    {
+                        <span>@Request.QueryString["location"]</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+@*<div class="filter-layout row">
+        <div class="col-md-4">
+            <div class="dropdown">
+                <button class="dropbtn">Sort by</button>
+                <div class="dropdown-content">
+                    @Html.ActionLink("Brand Name", "SearchCars", new { sortOrder = ViewBag.BrandNameSortParm, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("Car Name", "SearchCars", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                </div>
+            </div>
+
+        </div>
+
+        @using (Html.BeginForm("SearchCars", "User", FormMethod.Get))
+        {
+            <div class="col-md-8">
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @Placeholder = "Search" })
+            </div>
+            <div class="col-md-1">
+                <input type="submit" class="btn btn-success" value="Search" />
+            </div>
+        }
+    </div>*@
+<br />
+@if (Model.Count != 0)
+{
+    <div class="row">
+
+
+        @foreach (var item in Model)
+        {
+        <div class="col-md-3">
+            <div class="card1 text-center">
+                <div class="card-block">
+                    <img src="~/Uploads/CarsImages/@item.Image" class="img-thumbnail" style="height:250px" />
+                    <div class="card-title">
+                        <h4>@item.Name</h4>
+                    </div>
+                    <div class="card-text">@item.ShortDescription</div>
+                    <a style="margin-top:10px; margin-bottom:10px;" href="/User/CarDetails?Id=@item.Id" class="btn btn-success">View Car</a>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    <br />
+    <div class="filter-layout" style="flex-direction:column">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("NewCars",
+                    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+}
+else
+{
+    <h1>No cars Found!!</h1>
+    <h3>Please contact us for your desired car to be here !!</h3>
+    <a class="btn btn-success" href="/User/ContactUs">Contact Us</a>
+}
+

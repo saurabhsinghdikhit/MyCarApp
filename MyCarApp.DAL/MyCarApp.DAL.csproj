@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FF4A065A-BCDB-4060-9FB6-F215813D0A73}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyCarApp.DAL</RootNamespace>
+    <AssemblyName>MyCarApp.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.0\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="automapperConfig.cs" />
+    <Compile Include="AutoMapperConfig\CarProfiler.cs" />
+    <Compile Include="Database\Address.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Admin.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Bank.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Car.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CarCategory.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CarCategoryMapper.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CarPurchas.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CarRent.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\CarVarient.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\City.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ContactU.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Country.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Currency.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Dealer.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\EMI.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\FAQ.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Feedback.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\FeedbackCategory.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Invoice.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\MyCarContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyCarContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\MyCarContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\MyCarContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyCarContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Offer.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\PaymentMethod.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Pincode.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Promo.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Review.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\State.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\User.cs">
+      <DependentUpon>MyCarContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Classes\AddressRepository.cs" />
+    <Compile Include="Repository\Classes\AddressSupportRepository.cs" />
+    <Compile Include="Repository\Classes\AdminRepository.cs" />
+    <Compile Include="Repository\Classes\CarRepository.cs" />
+    <Compile Include="Repository\Classes\ChartRepository.cs" />
+    <Compile Include="Repository\Classes\SupportRepository.cs" />
+    <Compile Include="Repository\Classes\TransactionRepository.cs" />
+    <Compile Include="Repository\Classes\UserRepository.cs" />
+    <Compile Include="Repository\Interfaces\IAddressRepository.cs" />
+    <Compile Include="Repository\Interfaces\IAddressSupportRepository.cs" />
+    <Compile Include="Repository\Interfaces\IAdminRepository.cs" />
+    <Compile Include="Repository\Interfaces\ICarRepository.cs" />
+    <Compile Include="Repository\Interfaces\IChartRepository.cs" />
+    <Compile Include="Repository\Interfaces\ISupportRepository.cs" />
+    <Compile Include="Repository\Interfaces\ITransactionRepository.cs" />
+    <Compile Include="Repository\Interfaces\IUserRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyCarApp.BE\MyCarApp.BE.csproj">
+      <Project>{a5d728ee-772b-41a4-a356-7fbc2f51a449}</Project>
+      <Name>MyCarApp.BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyCarApp.Common\MyCarApp.Common.csproj">
+      <Project>{ba2e6e42-3a32-4903-8c03-d88eb3fd208b}</Project>
+      <Name>MyCarApp.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Database\MyCarContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MyCarContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Database\MyCarContext.edmx.diagram">
+      <DependentUpon>MyCarContext.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\MyCarContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyCarContext.edmx</DependentUpon>
+      <LastGenOutput>MyCarContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Database\MyCarContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyCarContext.edmx</DependentUpon>
+      <LastGenOutput>MyCarContext.cs</LastGenOutput>
+    </Content>
+    <Content Include="EmailFormates\CarPurchase.html" />
+    <Content Include="EmailFormates\RefundApprove.html" />
+    <Content Include="EmailFormates\RefundReject.html" />
+    <Content Include="EmailFormates\Registration.html" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

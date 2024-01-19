@@ -1,0 +1,335 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LandingPage</title>
+    <link href="~/Content/LandingPageStyle.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="icon" href="~/MyCarApp.png" type="image/imge_header">
+</head>
+<body>
+    <div id="skipToSite" class="skipToSite">
+        <a href="/User/Index">Take me to the Website -></a>
+    </div>
+    <div class="container" style="width: auto;">
+        <div class="landingBox" style="width: auto;">
+            <div class="row" style="width: auto;">
+                <div class="col-lg-12 text-center">
+                    <h2>What you want!!</h2>
+                </div>
+            </div>
+            <div class="row" style="width: auto; height:100%">
+                <center>
+                    <div id="containerBuyOrRent" style="width: auto;">
+                        <div class="col-lg-6  text-center" id="buyCar" style="width: auto;">
+                            <div class="card" style="width: auto;">
+                                <img class="card-img-top" src="~/Images/BuyCar.jfif" alt="Card image cap" style="height:200px; width:400px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Buy Now</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6  text-center" id="rentCar" style="width: auto;">
+                            <div class="card" style="width: auto;">
+                                <img class="card-img-top" src="~/Images/rentCar.jfif" alt="Card image cap" style="height:200px; width:400px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Take on Rent</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+                @*Buying a car*@
+                <center>
+                    <div id="container1" style="width: auto;">
+                        <div class="col-lg-6  text-center" id="buyNewCar" style="width: auto; height: 100%">
+                            <div class="card" style="width: auto;">
+                                <img class="card-img-top" src="~/Images/BuyCar.jfif" alt="Card image cap" style="height:200px; width:400px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Buy a New Car</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6  text-center" id="buyOldCar" style="width: auto;">
+                            <div class="card" style="width: auto;">
+                                <img class="card-img-top" src="~/Images/rentCar.jfif" alt="Card image cap" style="height:200px; width:400px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Buy Old Car</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+                <div id="containerNewCar" style="width:auto">
+                    <div class="col-lg-6  text-center" id="buyNewCarByBudget" style="width:auto">
+                        <div class="card" style="width: auto;">
+                            <img class="card-img-top" src="~/Images/BuyCar.jfif" alt="Card image cap" style="height:200px; width:400px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Buy a New Car By Budget</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6  text-center" id="buyNewCarByModel" style="width:auto">
+                        <div class="card" style="width: auto;">
+                            <img class="card-img-top" src="~/Images/rentCar.jfif" alt="Card image cap" style="height:200px; width:400px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Buy a New Car By Model</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="containerNewCarByBudget" style="width:auto">
+                    <div class="card" style="width: auto;">
+                        <div class="card-body" style="width:auto">
+                            <form method="post" name="choose">
+                                <input type="hidden" name="BuyCar" value="true" />
+                                <div class="col-lg-6  text-center">
+                                    <h3>Select Budget</h3>
+                                    <select name="newCarByBudgetBudget">
+                                        <option>3-5lac</option>
+                                        <option>5-10lac</option>
+                                        <option>10-15lac</option>
+                                        <option>5-10lac</option>
+                                        <option>15-30lac</option>
+                                        <option> above 30 lacs</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6  text-center">
+                                    <h3>Select Vehicle type</h3>
+                                    <select name="newCarByBudgetVehicle">
+                                        <option>Maruti</option>
+                                        <option>Kia</option>
+                                        <option>Hyundai</option>
+                                        <option>Toyota</option>
+                                        <option>Honda</option>
+                                        <option>Renault Kwid</option>
+                                    </select>
+                                </div>
+                                <div class="row text-center">
+                                    <input type="submit" value="show cars" class="btn btn-primary" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="container" id="containerNewCarByModel" style="width:auto">
+                    <div class="card" style="width:auto; background-color: lightsalmon; height:100%; border:none">
+                        <div class="card-body" style="width:auto">
+                            <form method="post" name="choose">
+                                <input type="hidden" name="BuyCar" value="true" />
+                                <input type="hidden" name="NewCar" value="true" />
+                                <input type="hidden" name="ByModel" value="true" />
+                                <div class="col-lg-6  text-center">
+                                    <h3 style="color: black; font-variant: small-caps;font-display:auto; font-family:Global Sans Serif">Select Brand</h3>
+                                    <select name="newCarByModelBrand">
+                                        <option>Maruti</option>
+                                        <option>Kia</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6  text-center">
+                                    <h3 style="color: black; font-variant: small-caps; font-display:auto; font-family:Global Sans Serif">Select model</h3>
+                                    <select name="newCarByModelModelName">
+                                        <option>Alto</option>
+                                        <option>x-50</option>
+                                    </select>
+                                </div>
+                                <div class="row text-center">
+                                    <input type="submit" value="Show Cars" class="btn btn-primary" style="background-color: white; color: black; border: 2px solid #4CAF50; /* Green */"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <center>
+                <div id="containerOldCar" style="width:auto;height:100%">
+                    <div class="col-lg-6  text-center" id="buyOldCarByLocation" style="width:auto">
+                        <div class="card" style="width: auto;">
+                            <img class="card-img-top" src="~/Images/BuyCar.jfif" alt="Card image cap" style="height:200px; width:400px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Buy a Old Car By Location</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6  text-center" id="buyOldCarBySearch" style="width:auto">
+                        <div class="card" style="width: auto;">
+                            <img class="card-img-top" src="~/Images/rentCar.jfif" alt="Card image cap" style="height:200px; width:400px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Buy a Old Car By Search</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </center>
+                <div class="container" id="containerOldCarLocation" style="width:auto; height:100%">
+                    <form method="post" name="choose">
+                        <input type="hidden" name="BuyCar" value="true" />
+                        <div class="col-lg-12  text-center" style="background-color: azure;">
+                            <h3 style="font-variant: small-caps; ">Search your location</h3>
+                            <select name="oldCarByLocation">
+                                <option>Ahmedabad</option>
+                                <option>Surat</option>
+                                <option>Navsari</option>
+                            </select>
+                        </div>
+                        <div class="row text-center" style="background-color: azure;">
+                            <input type="submit" value="Show Cars" class="btn btn-primary" style="width:auto; background-color:saddlebrown"/>
+                        </div>
+                    </form>
+                </div>
+                <center>
+                    <div id="containerOldCarSearch" style="width:auto; height:100%">
+                        <div class="col-lg-6  text-center" id="buyOldCarByBudget" style="width:auto; height:100%">
+                            <div class="card" style="width: auto;">
+                                <img class="card-img-top" src="~/Images/BuyCar.jfif" alt="Card image cap" style="height:200px; width:400px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">By Budget</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6  text-center" id="buyOldCarByModel" style="width:auto; height:100%">
+                            <div class="card" style="width: auto;">
+                                <img class="card-img-top" src="~/Images/rentCar.jfif" alt="Card image cap" style="height:200px; width:400px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">By Model</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </center>
+                <div id="containerOldCarByBudget" style="background-color:powderblue; font-variant-caps: petite-caps;font-weight: lighter; width:auto;">
+                    <form method="post" name="choose">
+                        <input type="hidden" name="BuyCar" value="true" />
+                        <div class="col-lg-6  text-center">
+                            <h2>Select Budget</h2>
+                            <select name="oldCarSearchByBudgetBudget" style="width:auto; height:100%">
+                                <option>3-5lac</option>
+                                <option>5-10lac</option>
+                                <option>10-15lac</option>
+                                <option>5-10lac</option>
+                                <option>15-30lac</option>
+                                <option> above 30 lacs</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6  text-center">
+                            <h2>Search your location</h2>
+                            <select name="oldCarSearchByBudgetLocation">
+                                <option>Ahmedabad</option>
+                                <option>Surat</option>
+                                <option>Navsari</option>
+                            </select>
+                        </div>
+                        <div class="row text-center">
+                            <input type="submit" value="Show Cars" style="background-color: white; color: black; border: 2px solid blue"/>
+                        </div>
+                    </form>
+                </div>
+                <div id="containerOldCarByModel" style="background-color:cadetblue; font-variant-caps: petite-caps;font-weight: lighter; width:auto; ">
+                    <form method="post" name="choose">
+                        <input type="hidden" name="BuyCar" value="true" />
+                        <div class="col-lg-6  text-center">
+                            <h2>Select Model</h2>
+                            <select name="oldCarSearchByModelModelName">
+                                <option>Ambasseder</option>
+                                <option>Astin Martin</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6  text-center">
+                            <h2>Search your location</h2>
+                            <select name="oldCarSearchByModelLocation">
+                                <option>Ahmedabad</option>
+                                <option>Surat</option>
+                                <option>Navsari</option>
+                            </select>
+                        </div>
+                        <div class="row text-center">
+                            <input type="submit" value="show cars" style="background-color: black; color: white; text-align: center;" />
+                        </div>
+                    </form>
+                </div>
+                @*Renting a car*@
+                <div id="Renting" style="width:auto; height:100%">
+                    <center>
+                        <div class="col-lg-6  text-center" id="RentingrentCar" style="width:auto; height:100%">
+                            <div class="card" style="width: auto;">
+                                <img class="card-img-top" src="~/Images/BuyCar.jfif" alt="Card image cap" style="height:200px; width:400px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Rent a Car</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6  text-center" id="subscribeCar" style="width:auto; height:100%">
+                            <div class="card" style="width: auto;">
+                                <img class="card-img-top" src="~/Images/rentCar.jfif" alt="Card image cap" style="height:200px; width:400px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Subscribe a Car</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+                <div id="RentingRent" style="width:auto;height:100%; border:none";">
+                    <form method="post" name="choose">
+                        <input type="hidden" name="RentCar" value="true" />
+                        <div class="col-lg-4  text-center">
+                            <h2>Input city</h2>
+                            <select name="rentCity">
+                                <option>Surat</option>
+                                <option>Lucknow</option>
+                                <option>Vadodara</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4  text-center">
+                            <h2>Start Date</h2>
+                            <input type="datetime-local" name="rentstartDate" />
+                        </div>
+                        <div class="col-lg-4  text-center">
+                            <h2>Start Date</h2>
+                            <input type="datetime-local" name="rentendDate" />
+                        </div>
+                        <div class="row text-center">
+                            <input type="submit" value="Rent a car" style="background-color: black; color:white; text-align:center" />
+                        </div>
+                        <div id="airportPickup" class="airportPickup text-center">
+                            <input type="radio" name="airportPickup" />Want airportpickup ?
+                        </div>
+                    </form>
+                </div>
+                <div id="RentingSubscribe" style="width:auto; height:100%;">
+                    <form method="post" name="choose">
+                        <input type="hidden" name="RentCar" value="true" />
+                        <div class="col-lg-4  text-center">
+                            <h2>Input city</h2>
+                            <select name="subscribeCity">
+                                <option>Surat</option>
+                                <option>Lucknow</option>
+                                <option>Vadodara</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4  text-center">
+                            <h2>Start Date</h2>
+                            <input type="datetime-local" name="subscribestartDate" />
+                        </div>
+                        <div class="col-lg-4  text-center">
+                            <h2>Start Date</h2>
+                            <input type="datetime-local" name="subscribeendDate" />
+                        </div>
+                        <div class="row text-center">
+                            <input type="submit" value="Subscribe a car" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="~/Scripts/landingPage.js"></script>
